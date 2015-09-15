@@ -1,2 +1,4 @@
-while (True) :
-    print ('TATERS TATERS TATERS')
+def hungry():
+
+    while (True) :
+        print ('TATERS TATERS TATERS')
