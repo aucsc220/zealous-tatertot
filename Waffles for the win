@@ -1,1 +1,3 @@
-Dude only waffles
+#Dude only waffles
+while (True):
+    print ('HAXED BY PANCAKES')
