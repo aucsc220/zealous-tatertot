@@ -19,15 +19,25 @@ def cleanup_word(word):
     ''
     >>> cleanup_word("HELLO FRIENDS!")
     'hello friends'
-    >>> cleanup_word("Party like it's 1979!')
+    >>> cleanup_word("Party like it's 1979!")
     'party like its'
     >>> cleanup_word("  hello...")
     'hello'
     """
+    ##Updated Sept 22 2:59 PM by Zoe Tomkow
+    ##We are deleting spaces before and after the sentance.
+    ##We are also adding spaces between words.
     letters = []
-    for w in word:
-        if w in string.ascii_letters:
-            letters.append(w.lower())
+    word.split(' ')  ##Split our word up for easier handling.  Extra code, but 
+    for eachWord in word:  ##easier to read.
+        for eachLetter in eachWord :
+            if eachLetter in string.ascii_letters :  ##is it ascii letter?
+                letters.append(eachLetter.lower())   ##add it to the list and lower case
+            elif eachLetter == ' ' and letters !=[] :  ##this adds a space if it's a space ONLY if 
+                letters.append(' ')                    ##the list is not empty.  This handles spaces before a sentance.
+    if letters != [] :     
+        if letters [-1] == ' ' :    ##this removes an extra space at the end if there is one.
+            del letters[-1]
     return ''.join(letters)
 
 def is_palindrome(word):
