@@ -95,11 +95,18 @@ def can_spell(word, allowed_letters):
     >>> can_spell('Aibohphobia', string.ascii_letters*4)
     True
     """
+    wordLength = len(word)
+    myList = list(allowed_letters)
+    location = 0
     for w in word:
-        if w not in allowed_letters:
+        if w.isupper():
+            myList.insert(location,w.lower())
+        elif w not in myList:
             return False
+        else:
+            myList.remove(w)
+        location +=1   
     return True
-
 def display_masked_word(word, found_letters=None):
     """
     Print the word to the screen with all the letters that do not occur in found_letters
