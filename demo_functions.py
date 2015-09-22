@@ -19,15 +19,25 @@ def cleanup_word(word):
     ''
     >>> cleanup_word("HELLO FRIENDS!")
     'hello friends'
-    >>> cleanup_word("Party like it's 1979!')
+    >>> cleanup_word("Party like it's 1979!")
     'party like its'
     >>> cleanup_word("  hello...")
     'hello'
     """
+    ##Updated Sept 22 2:59 PM by Zoe Tomkow
+    ##We are deleting spaces before and after the sentance.
+    ##We are also adding spaces between words.
     letters = []
-    for w in word:
-        if w in string.ascii_letters:
-            letters.append(w.lower())
+    word.split(' ')  ##Split our word up for easier handling.  Extra code, but 
+    for eachWord in word:  ##easier to read.
+        for eachLetter in eachWord :
+            if eachLetter in string.ascii_letters :  ##is it ascii letter?
+                letters.append(eachLetter.lower())   ##add it to the list and lower case
+            elif eachLetter == ' ' and letters !=[] :  ##this adds a space if it's a space ONLY if 
+                letters.append(' ')                    ##the list is not empty.  This handles spaces before a sentance.
+    if letters != [] :     
+        if letters [-1] == ' ' :    ##this removes an extra space at the end if there is one.
+            del letters[-1]
     return ''.join(letters)
 
 def is_palindrome(word):
@@ -139,17 +149,22 @@ def sort_by_length(words):
     
     >>> sort_by_length(['a', 'cat', 'friend'])
     [['a'], ['cat'], ['friend']]
-    >>> sort_by_length(['tater', 'tatertots', 'a', 'meal' 'of', 'champion', 'cats'])
+    >>> sort_by_length(['tater', 'tatertots', 'a', 'meal', 'of', 'champion', 'cats'])
     [['a'], ['of'], ['cats', 'meal'], ['tater'], ['champion'], ['tatertots']]
     """
+
     word_dict = defaultdict(list)
     
     for w in words:
         word_dict[len(w)].append(w)
-    
+
     word_lists = []
     for k in sorted(word_dict):
         word_lists.append(word_dict[k])
+
+    for k in word_dict:
+        word_dict[k].sort()
+        
     return word_lists
 
 def pretty_print_words(words):
