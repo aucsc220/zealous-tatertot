@@ -132,17 +132,22 @@ def sort_by_length(words):
     
     >>> sort_by_length(['a', 'cat', 'friend'])
     [['a'], ['cat'], ['friend']]
-    >>> sort_by_length(['tater', 'tatertots', 'a', 'meal' 'of', 'champion', 'cats'])
+    >>> sort_by_length(['tater', 'tatertots', 'a', 'meal', 'of', 'champion', 'cats'])
     [['a'], ['of'], ['cats', 'meal'], ['tater'], ['champion'], ['tatertots']]
     """
+
     word_dict = defaultdict(list)
     
     for w in words:
         word_dict[len(w)].append(w)
-    
+
     word_lists = []
     for k in sorted(word_dict):
         word_lists.append(word_dict[k])
+
+    for k in word_dict:
+        word_dict[k].sort()
+        
     return word_lists
 
 def pretty_print_words(words):
