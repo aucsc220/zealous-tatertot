@@ -109,12 +109,12 @@ def can_spell(word, allowed_letters):
     myList = list(allowed_letters)
     location = 0
     for w in word:
-        if w.isupper():
+        if w.isupper(): # replaces an uppercase letter
             myList.insert(location,w.lower())
         elif w not in myList:
             return False
         else:
-            myList.remove(w)
+            myList.remove(w) #pop a letter from a copy allowed_letters's list if found
         location +=1   
     return True
 def display_masked_word(word, found_letters=None):
