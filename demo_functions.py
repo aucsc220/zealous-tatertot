@@ -84,7 +84,7 @@ def has_doubles(word):
     >>> has_doubles('Can haz taters?')
     True
     """
-    singles = set(word.lower())
+    singles = set(word)
     if len(singles) < len(word):
         return True
     else:
@@ -139,6 +139,8 @@ def display_masked_word(word, found_letters=None):
     display = ['_']*len(word)
     for i, v in enumerate(word):
         if v in found_letters:
+            display[i] = v
+        if v.lower() in found_letters: #Display the found letter when it is not loewer case letter.
             display[i] = v
     print(' '.join(display))
     
