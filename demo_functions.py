@@ -84,7 +84,7 @@ def has_doubles(word):
     >>> has_doubles('Can haz taters?')
     True
     """
-    singles = set(word)
+    singles = set(word.lower())  #applied .lower() to word
     if len(singles) < len(word):
         return True
     else:
