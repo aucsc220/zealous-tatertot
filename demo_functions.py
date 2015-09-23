@@ -135,14 +135,25 @@ def display_masked_word(word, found_letters=None):
     """
     if not found_letters:
         found_letters = []
-    
+        
     display = ['_']*len(word)
+    Num = len(word) ##Count the amount of empty space
     for i, v in enumerate(word):
-        if v in found_letters:
-            display[i] = v
-        if v.lower() in found_letters: #Display the found letter when it is not loewer case letter.
-            display[i] = v
-    print(' '.join(display))
+        if v.lower() in found_letters:
+            if display[i-1] in found_letters:
+                display[i] = v.lower()
+                Num = Num -1 ##No empty space between letters
+            else:
+                display[i] = v.lower()
+    for x in range(len(display) + Num):
+        if display[x] == '_' and display[x-1] != ' ': ##add empty space before each _
+            display.insert(x,' ')
+        if display[x] in found_letters and display[x-1] == '_': ##add empty space before letter
+            display.insert(x,' ')
+    if display[0] == ' ':
+        del display[0] ##del the empty space at front 
+    print(''.join(display))
+
     
 def sort_by_length(words):
     """
